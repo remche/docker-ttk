@@ -1,2 +1,5 @@
 before_script:
   - apt-get install curl
+build:
+  - script:
+    echo toto
