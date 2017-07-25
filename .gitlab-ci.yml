@@ -1,5 +1,0 @@
-image: docker
-build:
-  script:
-    - docker build .
-
