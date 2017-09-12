@@ -12,6 +12,7 @@ RUN apt-get clean && apt-get update && apt-get install -y \
 	python-numpy \
 	python-pip \
 	python-scipy \
+	python-sphinx \
 	python-tifffile \
 	r-base \
 	swig
