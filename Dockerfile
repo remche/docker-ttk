@@ -13,6 +13,7 @@ RUN apt-get clean && apt-get update && apt-get install -y \
 	python-pip \
 	python-scipy \
 	python-sphinx \
+	python-sphinx-rtd-theme \
 	python-tifffile \
 	r-base \
 	swig
