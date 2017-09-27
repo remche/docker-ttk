@@ -3,6 +3,7 @@
 FROM debian:stretch
 
 RUN apt-get clean && apt-get update && apt-get install -y \
+	cython \
 	g++ \
 	ipython \
 	libeigen3-dev \
