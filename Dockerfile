@@ -20,5 +20,7 @@ RUN apt-get clean && apt-get update && apt-get install -y \
 	r-base \
 	swig
 
-RUN pip install -r requirements.txt
+COPY requirements.txt /root
+
+RUN pip install -r /root/requirements.txt
 
