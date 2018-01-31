@@ -10,3 +10,4 @@ Cython>=0.25.2
 sphinx>=1.4.9
 scikit-image>=0.13.1
 progressbar>=2.3.0
+mpi4py>=3.0.0

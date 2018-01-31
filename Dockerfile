@@ -10,6 +10,7 @@ RUN apt-get clean && apt-get update && apt-get install -y \
 	libeigen3-dev \
 	libgmp-dev \
 	libmpfr-dev \
+    libopenmpi-dev \
 	python-matplotlib \
 	python-numpy \
 	python-pip \
