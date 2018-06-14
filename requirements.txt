@@ -1,23 +1,26 @@
-numpy>=1.12.1
-scipy>=0.18.1
-matplotlib>=2.0.0
-ipython>=5.1.0
-tifffile>=0.12.1
-SimpleITK>=1.0.0
-ipykernel>=4.6.1
-PyVTK>=0.5.18
-scikit-image>=0.13.1
-mpi4py>=3.0.0
-rpy2==2.7.8
-sphinx>=1.7.0
+numpy
+scipy
+matplotlib
+ipython
+tifffile
+SimpleITK
+scikit-image
+mpi4py
 
-# not working with python3
-#progressbar>=2.3.0
+# pyamg>=3.3.2
 
+# This is for Jupyter:
+# ipykernel>=4.6.1
 
-# mesh -> add the gmsh dependency but important for GDIC and FE
+## modules with problems
+
+# force 2.7 for python2
+rpy2<2.8
+pygmsh
+
 # version 4.1.6 and 4.1.7 -> import error X = X @ R.T
-pygmsh==4.1.5
-#meshio # should be added with pygmsh
-sphinx-gallery>=0.1.13
-sphinx_rtd_theme>=0.3.0
+# pygmsh==4.1.5
+
+# dependency of meshio
+# (issue closed so should useless for version>2.0.0)
+pathlib
