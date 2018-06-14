@@ -19,6 +19,9 @@ RUN apt-get clean && apt-get update && apt-get install -y \
 	python-sphinx-rtd-theme \
 	python-tifffile \
 	r-base \
+	r-cran-randomfields \
+    r-cran-randomfieldsutils \
+    r-cran-sp \
 	swig
 
 COPY requirements.txt /root
