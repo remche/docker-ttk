@@ -6,6 +6,7 @@ RUN apt-get clean && apt-get update && apt-get install -y \
     cython \
     git \
     g++ \
+    gmsh \
     ipython \
     libeigen3-dev \
     libgmp-dev \
