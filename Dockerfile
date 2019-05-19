@@ -8,6 +8,7 @@ RUN apt-get clean && apt-get update && apt-get install -y \
     g++ \
     gmsh \
     ipython \
+    libcgal-dev \
     libeigen3-dev \
     libgmp-dev \
     libmpfr-dev \
