@@ -1,7 +1,15 @@
-before_script:
-  - apt-get install curl
+image : docker
+variables:
+  DOCKER_DRIVER: overlay2
+
+stages :
+  - build
+ 
 build:
+  stage : build
+  services:
+    - docker:dind
   script:
-    - "curl -H \"Content-Type: application/json\" --data '{\"build\": true}' -X POST https://registry.hub.docker.com/u/remche/docker-ttk/trigger/f02c71b4-5582-4e95-92b0-f43a73dd7d50/"
-  only:
-    - schedules
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
+    - docker build -t $CI_REGISTRY_IMAGE . 
+    - docker push $CI_REGISTRY_IMAGE
