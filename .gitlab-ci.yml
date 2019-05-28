@@ -13,3 +13,12 @@ build:
     - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
     - docker build -t $CI_REGISTRY_IMAGE . 
     - docker push $CI_REGISTRY_IMAGE
+
+build manylinux:
+  stage : build
+  services:
+    - docker:dind
+  script:
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
+    - docker build -f Dockerfile-manylinux -t $CI_REGISTRY_IMAGE/manylinux . 
+    - docker push $CI_REGISTRY_IMAGE/manylinux

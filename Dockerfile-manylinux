@@ -1,0 +1,68 @@
+FROM quay.io/pypa/manylinux2010_x86_64
+
+ENV CMAKE_VERSION 3.14.4
+ENV SWIG_VERSION 4.0.0
+ENV CGAL_VERSION 4.13.1
+ENV BOOST_VERSION 1_70_0
+ENV BOOST_INCLUDEDIR /usr/local/include/boost
+ENV OMPI_VERSION 4.0.1
+
+RUN yum -y install \
+      eigen3-devel \
+      gmp-devel \
+      mpfr-devel \
+      pcre-devel \
+      qt5-qtbase-devel \
+      qt5-qtsvg-devel \
+      R \
+      readline \
+      zlib-devel
+
+
+# CMAKE
+WORDKIR /tmp/build
+RUN curl -L  https://github.com/Kitware/CMake/releases/download/v$CMAKE_VERSION/cmake-$CMAKE_VERSION.tar.gz -o cmake-$CMAKE_VERSION.tar.gz && \
+      tar xvzf cmake-$CMAKE_VERSION.tar.gz
+
+WORDKIR /tmp/build/cmake-$CMAKE_VERSION
+RUN ./bootstrap && \
+      make && \
+      make install
+
+# SWIG
+WORDKIR /tmp/build
+RUN curl -L https://sourceforge.net/projects/swig/files/swig/swig-$SWIG_VERSION/swig-$SWIG_VERSION.tar.gz -o swig-$SWIG_VERSION.tar.gz && \
+      tar xvzf swig-$SWIG_VERSION.tar.gz
+
+WORKDIR /tmp/build/swig-$SWIG_VERSION
+RUN ./configure && \
+      make && \
+      make install
+
+# BOOST
+WORDKIR /tmp/build
+RUN curl https://dl.bintray.com/boostorg/release/1.70.0/source/boost_$BOOST_VERSION.tar.gz -o boost_1_70_0.tar.gz && \
+      tar xvzf boost_$BOOST_VERSION.tar.gz
+
+WORDKIR /tmp/build/boost_$BOOST_VERSION
+RUN ./bootstrap.sh && \
+      ./b2 install
+
+
+# CGAL
+WORDKIR /tmp/build
+RUN curl -L  https://github.com/CGAL/cgal/releases/download/releases%2FCGAL-$CGAL_VERSION/CGAL-$CGAL_VERSION.zip -o cgal-$CGAL_VERSION.zip && \
+      unzip  cgal-$CGAL_VERSION.zip
+WORKDIR /tmp/build/CGAL-$CGAL_VERSION
+RUN cmake . -DCMAKE_BUILD_TYPE="Release" && \
+      make && \
+      make install
+
+# OPENMPI
+WORDKIR /tmp/build
+RUN curl -L https://download.open-mpi.org/release/open-mpi/v3.1/openmpi-3.1.4.tar.gz -o openmpi-3.1.4.tar.gz && \
+      tar xvzf openmpi-3.1.4.tar.gz
+
+WORKDIR /tmp/build/openmpi-3.1.4
+RUN ./configure && \
+      make all install
