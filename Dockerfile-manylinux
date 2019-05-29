@@ -43,7 +43,7 @@ RUN ./configure && \
 
 # BOOST
 WORKDIR /tmp/build
-RUN curl https://dl.bintray.com/boostorg/release/1.70.0/source/boost_$BOOST_VERSION.tar.gz -o boost_$BOOST_VERSION.tar.gz && \
+RUN curl -L https://dl.bintray.com/boostorg/release/1.70.0/source/boost_$BOOST_VERSION.tar.gz -o boost_$BOOST_VERSION.tar.gz && \
       tar xvzf boost_$BOOST_VERSION.tar.gz
 
 WORKDIR /tmp/build/boost_$BOOST_VERSION
