@@ -17,7 +17,7 @@ RUN yum -y install \
       qt5-qtbase-devel \
       qt5-qtsvg-devel \
       R \
-      readline \
+      readline-devel \
       zlib-devel
 
 
