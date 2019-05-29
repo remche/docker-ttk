@@ -63,7 +63,7 @@ RUN cmake . -DCMAKE_BUILD_TYPE="Release" && \
 
 # OPENMPI
 WORKDIR /tmp/build
-RUN curl -L https://download.open-mpi.org/release/open-mpi/v$OMPI_MAJOR_VERSION/openmpi-$OMPI_MINOR_VERSION.tar.gz -o openmpi-MINOR_VERSIO.tar.gz && \
+RUN curl -L https://download.open-mpi.org/release/open-mpi/v$OMPI_MAJOR_VERSION/openmpi-$OMPI_MINOR_VERSION.tar.gz -o openmpi-MINOR_VERSION.tar.gz && \
       tar xvzf openmpi-$OMPI_MINOR_VERSION.tar.gz
 
 WORKDIR /tmp/build/openmpi-$OMPI_MINOR_VERSION
