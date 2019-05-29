@@ -71,4 +71,4 @@ RUN ./configure && \
       make all install
 
 
-rm -rf /tmp/build
+RUN rm -rf /tmp/build
