@@ -5,7 +5,9 @@ ENV SWIG_VERSION 4.0.0
 ENV CGAL_VERSION 4.13.1
 ENV BOOST_VERSION 1_70_0
 ENV BOOST_INCLUDEDIR /usr/local/include/boost
-ENV OMPI_VERSION 4.0.1
+ENV OMPI_MAJOR_VERSION 3.1
+ENV OMPI_MINOR_VERSION 3.1.4
+
 
 RUN yum -y install \
       eigen3-devel \
@@ -41,7 +43,7 @@ RUN ./configure && \
 
 # BOOST
 WORKDIR /tmp/build
-RUN curl https://dl.bintray.com/boostorg/release/1.70.0/source/boost_$BOOST_VERSION.tar.gz -o boost_1_70_0.tar.gz && \
+RUN curl https://dl.bintray.com/boostorg/release/1.70.0/source/boost_$BOOST_VERSION.tar.gz -o boost_$BOOST_VERSION.tar.gz && \
       tar xvzf boost_$BOOST_VERSION.tar.gz
 
 WORKDIR /tmp/build/boost_$BOOST_VERSION
@@ -61,9 +63,12 @@ RUN cmake . -DCMAKE_BUILD_TYPE="Release" && \
 
 # OPENMPI
 WORKDIR /tmp/build
-RUN curl -L https://download.open-mpi.org/release/open-mpi/v3.1/openmpi-3.1.4.tar.gz -o openmpi-3.1.4.tar.gz && \
-      tar xvzf openmpi-3.1.4.tar.gz
+RUN curl -L https://download.open-mpi.org/release/open-mpi/v$OMPI_MAJOR_VERSION/openmpi-$OMPI_MINOR_VERSION.tar.gz -o openmpi-MINOR_VERSIO.tar.gz && \
+      tar xvzf openmpi-$OMPI_MINOR_VERSION.tar.gz
 
-WORKDIR /tmp/build/openmpi-3.1.4
+WORKDIR /tmp/build/openmpi-$OMPI_MINOR_VERSION
 RUN ./configure && \
       make all install
+
+
+rm -rf /tmp/build
