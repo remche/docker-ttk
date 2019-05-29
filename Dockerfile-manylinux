@@ -48,7 +48,7 @@ RUN curl -L https://dl.bintray.com/boostorg/release/1.70.0/source/boost_$BOOST_V
 
 WORKDIR /tmp/build/boost_$BOOST_VERSION
 RUN ./bootstrap.sh && \
-      ./b2 install
+      ./b2 install || true
 
 
 # CGAL
